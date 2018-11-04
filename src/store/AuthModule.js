@@ -19,20 +19,28 @@ const AuthModule = {
     actions: {
         loginAdmin ({commit}, payload)
         {
-            console.log(constant._BASE_URL+"admin/login")
             axios.post(constant._BASE_URL+"admin/login", payload,{ 
                 headers: {
                 'Content-type': 'application/json',
                 }
             }).then(response => {
             
-            var user = response.data
-            commit('setUser', user)
+                var user = response.data
+                commit('setUser', user)
             })
         },
+
         registerAdmin({commit}, payload)
         {
-
+            axios.post(constant._BASE_URL+"admin/register", payload,{
+                headers:{
+                    'Content-type':'application/json'
+                }
+            }).then(response => {
+                var user = response.data
+                console.log(user)
+                commit('setUser', user)
+            })
         }
     }
 }
