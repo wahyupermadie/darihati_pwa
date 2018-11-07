@@ -68,29 +68,29 @@
         <b-card header="Traffic &amp; Sales">
           <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover" >
-                <thead>
-                  <tr>
-                      <th>NIM</th>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>No Telepon</th>
-                      <th>Tanggal Lahir</th>
-                      <th>Poin SKP</th>
-                      <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr >
-                      <td>sadd</td>
-                      <td>asd</td>
-                      <td>asd</td>
-                      <td>asd</td>
-                      <td>sadsd</td>
-                      <td>dasdasd</td>
-                      <td></td>
-                  </tr>
-                </tbody>
-              </table>
+              <thead>
+                <tr>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>No Telepon</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Poin SKP</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                    <td>sadd</td>
+                    <td>asd</td>
+                    <td>asd</td>
+                    <td>asd</td>
+                    <td>sadsd</td>
+                    <td>dasdasd</td>
+                    <td></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </b-card>
       </b-col>

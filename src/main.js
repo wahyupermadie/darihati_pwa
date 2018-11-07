@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import { store } from './store'
+import Vuelidate from 'vuelidate'
 
 import 'core-js/es6/promise'
 import 'core-js/es6/string'
@@ -25,7 +26,7 @@ if ('serviceWorker' in navigator) {
 }
 /* eslint-disable no-new */
 
-
+Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
 
 new Vue({

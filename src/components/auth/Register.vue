@@ -103,7 +103,7 @@ export default {
         formData.append('password',this.password)
         formData.append('address',this.address)
         formData.append('confirm_password', this.confirm_password)
-        console.log(formData)
+        // console.log(formData)
         this.$store.dispatch('registerAdmin', formData)
       }
   }

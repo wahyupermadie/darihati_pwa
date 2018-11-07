@@ -38,7 +38,6 @@ const AuthModule = {
                 }
             }).then(response => {
                 var user = response.data
-                console.log(user)
                 commit('setUser', user)
             })
         }
