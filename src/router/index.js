@@ -9,7 +9,8 @@ import DefaultContainer from '@/components/container/DefaultContainer'
 
 // Views
 import Dashboard from '@/components/page/Dashboard'
-import Student from '@/components/page/Student'
+import Student from '@/components/page/student/Student'
+import DetailStudent from '@/components/page/student/DetailStudent'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
           path: 'student',
           name: 'Student',
           component: Student
+        },
+        {
+          path: 'student/:student_id',
+          name: 'DetailStudent',
+          component: DetailStudent
         }
       ]
     },

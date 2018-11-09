@@ -11,7 +11,7 @@
             <table class="table table-striped table-bordered table-hover" >
                 <thead>
                   <tr>
-                      <th>No</th>
+                      <th>No</th> 
                       <th>Nama</th>
                       <th>Alamat</th>
                       <th>Tanggal Lahir</th>
@@ -24,15 +24,22 @@
                   <tr v-for="(student,index) in student" :key="index">
                       <td>{{index+1}}</td>
                       <td>{{student.name}}</td>
-                      <td>{{student.alamat}}</td>
+                      <td style="max-width: 150px;">{{student.alamat}}</td>
                       <td>{{student.dateofbirth}}</td>
-                      <td>{{student.deskripsi}}</td>
-                      <td>Deskripsi</td>
+                      <td>
+                        <b-img fluid 
+                          class="imageFile" 
+                          center 
+                          :src="'http://127.0.0.1:8000/adikasuh/'+student.foto"
+                          alt="center image">
+                        </b-img>
+                      </td>
                       <td>
                           <button type="button" class="btn btn-xs btn-outline-warning"><span class="fa fa-pencil"></span></button>
-                          <button type="button" class="btn btn-xs btn-outline-success"><span class="fa fa-search"></span></button>
+                          <router-link :to="{ name:'DetailStudent', params:{student_id: student.id}}" >
+                            <button type="button" class="btn btn-xs btn-outline-success"><span class="fa fa-search"></span></button>
+                          </router-link>
                           <button type="button" class="btn btn-xs btn-outline-danger"><span class="fa fa-trash"></span></button>
-                          <button type="button" @click="showModaladdHome(student.id,student.name)" class="btn btn-xs btn-outline-primary"><span class="fa fa-plus"></span></button>
                       </td>
                   </tr>
                 </tbody>
@@ -76,25 +83,12 @@
             <b-form-file v-model="dataStudent.foto" id="fotoadikasuh" name="fotoadikasuh" placeholder="Foto Adik Asuh" @change="onFileChange"></b-form-file>
           </b-form-group>
           <b-form-group>
-            <b-img class="imageFile" center :src="urlFoto" alt="center image" />
-          </b-form-group>
-        </b-form>
-      </b-modal>
-
-      <b-modal title="Tambah Foto Rumah" class="modal-primary" v-model="isModalRumahVisible" @ok="addFotoRumah">
-        <b-form enctype="multipart/form-data">
-          <b-form-group
-            label="Nama"
-            label-for="nama">
-            <b-form-input :disabled="true" required id="nama" type="text" :value="isName" placeholder="Nama Adik Asuh" autocomplete="Nama"></b-form-input>
-          </b-form-group>
-          <b-form-group
-            label="Foto Rumah"
-            label-for="foto">
-            <b-form-file multiple v-model="dataStudent.foto" id="previewImage" name="previewImage" placeholder="Foto Adik Asuh" @change="onFileHomeChange"></b-form-file>
-          </b-form-group>
-          <b-form-group>
-              <b-img v-for="(preview, index) in previewImage" :key="index" class="imageHome" :src="preview" alt="center image" />
+            <b-img 
+              class="imageFile" 
+              center 
+              :src="urlFoto" 
+              alt="center image">
+            </b-img>
           </b-form-group>
         </b-form>
       </b-modal>
@@ -119,11 +113,6 @@ export default {
         },
         urlFoto: "https://picsum.photos/125/125/?image=58",
         isModalVisible: false,
-        isModalRumahVisible: false,
-        isId : "",
-        isName : "",
-        attachments: [],
-        previewImage:[]
     }
   },
   created(){
@@ -139,21 +128,6 @@ export default {
         this.$store.dispatch('getLocal')
         this.student = this.$store.getters.students
       },
-
-      addFotoRumah()
-      {
-
-      },
-      showModaladdHome(id,name)
-      {
-        this.idId = id
-        this.isName = name
-        this.isModalRumahVisible = true;
-      },
-      closeModaladdHome()
-      {
-        this.isModalRumahVisible = false;
-      },
       showModal() {
         this.isModalVisible = true;
       },
@@ -162,20 +136,11 @@ export default {
       },
       onFileChange(e)
       {
+        this.previewImage = []
         const file = e.target.files[0]
         this.urlFoto = URL.createObjectURL(file)
       },
-      onFileHomeChange(e)
-      {
-          var files = e.target.files || e.dataTransfer.files;
-          if (!files.length)
-              return;
-          for (var i = files.length - 1; i >= 0; i--) {
-              this.previewImage.push(URL.createObjectURL(files[i]))
-          }
-          // Reset the form to avoid copying these files multiple times into this.attachments
-          document.getElementById("previewImage").value = [];
-      },
+
       addAdikAsuh(e)
       {
         e.preventDefault()

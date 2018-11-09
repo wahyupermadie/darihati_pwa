@@ -8,7 +8,6 @@ const user_id = localStorage.getItem(`user_id`);
 const StudentModule = {
     state: {
         students : [],
-        student:{}
     },
     
     mutations: {
@@ -31,6 +30,7 @@ const StudentModule = {
             let student_data = getCache('student'+user_id)
             commit("setStudents",student_data)
         },
+
         getStudent ({commit})
         {
             var user_data = {
@@ -55,9 +55,21 @@ const StudentModule = {
             });
         },
 
+        addFotoRumah({commit}, payload)
+        {
+
+            axios.post(constant._BASE_URL+"student/home", payload,{
+                headers:{
+                    'Content-type': 'application/json',
+                    'Authorization' : 'Bearer '+token,
+                }
+            }).then(response => {
+                
+            })
+        },
+
         addStudent({commit, dispatch}, payload)
         {
-            console.log(payload)
             axios.post(constant._BASE_URL+"student",payload,{ 
                 headers: {
                 'Content-type': 'application/json',
@@ -75,6 +87,7 @@ const StudentModule = {
                     "community_id":response.data.data['community_id']
                   }
                 commit('setStudent', dataStudent)
+                
             }).catch(error => {
                 console.log(error)
             });
