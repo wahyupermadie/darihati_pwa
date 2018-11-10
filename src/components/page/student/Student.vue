@@ -5,7 +5,7 @@
         <b-col cols="12">
           <b-card header="<i class='fa fa-star'></i> Adik Asuh Dashboard">
             <button type="button" @click="showModal" class="btn btn-outline-primary">Tambah Adik</button>
-            <br></br>
+            <br> </br>
             <div class="table-responsive">
 
             <table class="table table-striped table-bordered table-hover" >

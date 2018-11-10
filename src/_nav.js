@@ -34,7 +34,7 @@ export default {
     },
     {
       name: 'Daftar Pendanaan',
-      url: '/theme/colors',
+      url: '/funding',
       icon: 'icon-star'
     },
     {

@@ -11,6 +11,7 @@ import DefaultContainer from '@/components/container/DefaultContainer'
 import Dashboard from '@/components/page/Dashboard'
 import Student from '@/components/page/student/Student'
 import DetailStudent from '@/components/page/student/DetailStudent'
+import Funding from '@/components/page/fundings/Funding'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
           path: 'student/:student_id',
           name: 'DetailStudent',
           component: DetailStudent
+        },
+        {
+          path: 'funding',
+          name: 'Funding',
+          component : Funding
         }
       ]
     },

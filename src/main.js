@@ -10,7 +10,9 @@ import Vuelidate from 'vuelidate'
 import 'core-js/es6/promise'
 import 'core-js/es6/string'
 import 'core-js/es7/array'
+import vSelect from 'vue-select'
 
+Vue.component('v-select', vSelect)
 Vue.config.productionTip = false
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
