@@ -27,12 +27,17 @@ const StudentModule = {
     actions: {
         getLocal({commit})
         {
+            const token = localStorage.getItem(`user_token`);
+            const user_id = localStorage.getItem(`user_id`);
             let student_data = getCache('student'+user_id)
+            console.log('student data '+student_data)
             commit("setStudents",student_data)
         },
 
         getStudent ({commit})
         {
+            const token = localStorage.getItem(`user_token`);
+            const user_id = localStorage.getItem(`user_id`);
             var user_data = {
                 "id":user_id
             }
@@ -58,6 +63,7 @@ const StudentModule = {
         addFotoRumah({commit}, payload)
         {
 
+            const token = localStorage.getItem(`user_token`);
             axios.post(constant._BASE_URL+"student/home", payload,{
                 headers:{
                     'Content-type': 'application/json',
@@ -70,6 +76,7 @@ const StudentModule = {
 
         addStudent({commit, dispatch}, payload)
         {
+            const token = localStorage.getItem(`user_token`);
             axios.post(constant._BASE_URL+"student",payload,{ 
                 headers: {
                 'Content-type': 'application/json',
@@ -82,7 +89,7 @@ const StudentModule = {
                     "name":response.data.data['name'],
                     "alamat":response.data.data['alamat'],
                     "dateofbirth":response.data.data['dateofbirth'],
-                    "file": response.data.data['foto'],
+                    "foto": response.data.data['foto'],
                     "deskripsi": response.data.data['deskripsi'],
                     "community_id":response.data.data['community_id']
                   }
@@ -96,9 +103,6 @@ const StudentModule = {
     getters:{
         students(state){
             return state.students
-        },
-        student(state){
-            return state.student
         },
     }
 }

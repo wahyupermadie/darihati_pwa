@@ -10,13 +10,13 @@ export const getCache = key => {
     if (result) {
       let dateNow = new Date().getDate();
       let createdDate = new Date(result.created).getDate();
-      if (dateNow !== createdDate) {
-        // return null for refresh cache
-        result = null
-      } else {
+      // if (dateNow !== createdDate) {
+      //   // return null for refresh cache
+      //   result = null
+      // } else {
         // just return the datas
         result = result.data
-      }
+      // }
     }
   }catch(err){
     // do nothing

@@ -20,8 +20,22 @@ export default {
     },
     {
       name: 'Daftar Anggota',
-      url: '/theme/colors',
+      url: 'members',
       icon: 'icon-user'
+    },
+    {
+      title: true,
+      name: 'Berita',
+      class: '',
+      wrapper: {
+        element: '',
+        attributes: {}
+      }
+    },
+    {
+      name: 'Daftar Berita',
+      url: '/news',
+      icon: 'cui-file'
     },
     {
       title: true,
@@ -36,6 +50,11 @@ export default {
       name: 'Daftar Pendanaan',
       url: '/funding',
       icon: 'icon-star'
+    },
+    {
+      name: 'Daftar Pembayaran',
+      url: '/payment',
+      icon: 'fa fa-money'
     },
     {
       title: true,

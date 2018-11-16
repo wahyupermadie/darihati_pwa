@@ -1,5 +1,5 @@
 
-const _BASE_URL = "http://127.0.0.1:8000/api/admin/"
+const _BASE_URL = "https://darihati.futnet.id/api/admin/"
 
 export default {
     _BASE_URL

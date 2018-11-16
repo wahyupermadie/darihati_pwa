@@ -21,21 +21,16 @@
                     <b-col cols="6">
                       <b-button v-on:click="login()" variant="primary" class="px-4">Login</b-button>
                     </b-col>
-                    <b-col cols="6" class="text-right">
-                      <b-button variant="link" class="px-0">Forgot password?</b-button>
-                    </b-col>
                   </b-row>
                 </b-form>
               </b-card-body>
-            </b-card>
-            <b-card no-body class="text-white bg-primary py-5 d-md-down-none" style="width:44%">
-              <b-card-body class="text-center">
-                <div>
-                  <h2>Sign up</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <router-link to="/auth/register"><b-button variant="primary" class="active mt-3">Register Now!</b-button></router-link>
-                </div>
-              </b-card-body>
+              <b-card-footer class="mb-3">
+              <b-row>
+                <b-col cols="12">
+                  tidak punya akun ? silahkan <router-link to="/auth/register">Register</router-link> 
+                </b-col>
+              </b-row>
+            </b-card-footer>
             </b-card>
           </b-card-group>
         </b-col>
@@ -52,7 +47,28 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      flag : '',
+      messages : '',
+    }
+  },
+  computed:{
+    getFlag(){
+      
+      // console.log(this.$store.getters.getFlag)
+        return this.$store.getters.getFlag
+    }, 
+    getMessage(){
+      // console.log(this.$store.getters.getMessage)
+      return this.$store.getters.getMessage
+    }
+  },
+  watch: {
+    getFlag (data) {
+        this.flag = data
+    },
+    getMessage(data){
+      this.messages = data
     }
   },
   methods:{
@@ -62,6 +78,7 @@ export default {
               "password" : this.password
           }
           this.$store.dispatch('loginAdmin', data)
+          
       }
   }
 }

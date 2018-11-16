@@ -45,6 +45,18 @@
                 
                 <b-input-group class="mb-4">
                   <b-input-group-prepend>
+                    <b-input-group-text><i class="cui-file"></i></b-input-group-text>
+                    </b-input-group-prepend>
+                        <b-form-textarea id="textarea"
+                        v-model="deskripsi"
+                        placeholder="Enter Deskripsi "
+                        :rows="3"
+                        :max-rows="6">
+                    </b-form-textarea>
+                </b-input-group>
+
+                <b-input-group class="mb-4">
+                  <b-input-group-prepend>
                     <b-input-group-text><i class="icon-home"></i></b-input-group-text>
                     </b-input-group-prepend>
                         <b-form-textarea id="textarea1"
@@ -64,7 +76,7 @@
             </b-card-body>
             <b-card-footer class="p-4">
               <b-row>
-                <b-col cols="6">
+                <b-col cols="12">
                   already have an account ? please <router-link to="/auth">login</router-link> 
                 </b-col>
               </b-row>
@@ -88,8 +100,30 @@ export default {
             no_telepon : "",
             password : "",
             confirm_password : "",
-            address:""
+            address:"",
+            flag : '',
+            messages : '',
+            deskripsi : '',
       }
+  },
+  computed:{
+    getFlag(){
+      
+      // console.log(this.$store.getters.getFlag)
+        return this.$store.getters.getFlag
+    }, 
+    getMessage(){
+      // console.log(this.$store.getters.getMessage)
+      return this.$store.getters.getMessage
+    }
+  },
+  watch: {
+    getFlag (data) {
+        this.flag = data
+    },
+    getMessage(data){
+      this.messages = data
+    }
   },
   methods: {
       register()
@@ -103,6 +137,7 @@ export default {
         formData.append('password',this.password)
         formData.append('address',this.address)
         formData.append('confirm_password', this.confirm_password)
+        formData.append('deskripsi', this.deskripsi)
         // console.log(formData)
         this.$store.dispatch('registerAdmin', formData)
       }

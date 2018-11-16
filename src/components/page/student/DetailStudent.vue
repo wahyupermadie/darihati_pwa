@@ -7,7 +7,7 @@
             <b-img fluid 
               class="imageFile" 
               center 
-              :src="'http://127.0.0.1:8000/adikasuh/'+dataStudent.foto"
+              :src="'https://res.cloudinary.com/wahyupermadie/image/fetch/c_fill,g_auto:face,h_120,w_120,fl_force_strip.progressive/f_webp/https://darihati.futnet.id/adikasuh/'+dataStudent.foto"
               alt="center image">
             </b-img>
             <b-row>
@@ -59,7 +59,7 @@
                 <button @click="showModaladdHome()" type="button" style="margin-bottom:10px" class="btn btn-xs btn-outline-primary">Tambah Foto Rumah</button>
                   <b-row>
                     <b-col sm="4" style="margin-bottom:5px" v-for="(img,index) in fotos" :key="index">
-                      <b-img thumbnail fluid :src="'http://127.0.0.1:8000/rumah/'+img.foto_rumah" alt="Thumbnail" />
+                      <b-img thumbnail fluid :src="'https://res.cloudinary.com/wahyupermadie/image/fetch/c_fill,g_auto:face,h_120,w_120,fl_force_strip.progressive/f_webp/https://darihati.futnet.id/rumah/'+img.foto_rumah" alt="Thumbnail" />
                     </b-col>
                   </b-row>
               </b-col>
@@ -91,9 +91,8 @@
 <script>
 import constant from './../../../store/constant'
 import axios from 'axios'
-const token = localStorage.getItem(`user_token`);
 import {getCache,storedCache} from '@/cache'
-const community_id = localStorage.getItem('user_id');
+
 export default {
   data () {
     return {
@@ -122,6 +121,8 @@ export default {
       },
       getData()
       {
+        const token = localStorage.getItem(`user_token`);
+
           axios.get(constant._BASE_URL+"student/"+ this.$route.params.student_id,{
             headers:{
                     'Content-type': 'application/json',
@@ -135,7 +136,7 @@ export default {
 
       addFotoRumah()
       {
-      
+        const token = localStorage.getItem(`user_token`);
         let formData = new FormData()
         if (this.attachments.length > 0) {
             for (var i = 0; i < this.attachments.length; i++) {
@@ -145,9 +146,14 @@ export default {
             }
         }
         formData.append('id', this.$route.params.student_id)
-        this.$store.dispatch('addFotoRumah', formData)
-        this.attachments = []
-        this.getData()
+        axios.post(constant._BASE_URL+"student/home", formData,{
+                headers:{
+                    'Content-type': 'application/json',
+                    'Authorization' : 'Bearer '+token,
+                }
+            }).then(response => {
+                this.getData()
+            })
       },
 
       showModaladdHome()
@@ -159,18 +165,6 @@ export default {
       {
         this.isModalRumahVisible = false;
       },
-      // showModal() {
-      //   this.isModalVisible = true;
-      // },
-      // closeModal() {
-      //   this.isModalVisible = false;
-      // },
-      // onFileChange(e)
-      // {
-      //   this.previewImage = []
-      //   const file = e.target.files[0]
-      //   this.urlFoto = URL.createObjectURL(file)
-      // },
       onFileHomeChange(e)
       {
           this.previewImage = []

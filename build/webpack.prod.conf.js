@@ -131,6 +131,11 @@ const webpackConfig = merge(baseWebpackConfig, {
           // Apply a cache-first strategy.
           handler: 'cacheFirst',
         },
+        {
+          urlPattern: '^https:\/\/darihati\.futnet\.id*',
+          // Apply a cache-first strategy.
+          handler: 'cacheFirst',
+        },
       ],
     })
   ]

@@ -12,6 +12,10 @@ import Dashboard from '@/components/page/Dashboard'
 import Student from '@/components/page/student/Student'
 import DetailStudent from '@/components/page/student/DetailStudent'
 import Funding from '@/components/page/fundings/Funding'
+import Payment from '@/components/page/fundings/KonfirmasiFunding'
+import News from '@/components/page/news/News'
+import Member from '@/components/page/member/Member'
+import User from '@/components/page/user/User'
 
 Vue.use(Router)
 
@@ -29,22 +33,66 @@ export default new Router({
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: Dashboard
+          component: Dashboard,
+          meta: {
+            requiresAuth: true 
+          }  
         },
         {
           path: 'student',
           name: 'Student',
-          component: Student
+          component: Student,
+          meta: {
+            requiresAuth: true 
+          }  
         },
         {
           path: 'student/:student_id',
           name: 'DetailStudent',
-          component: DetailStudent
+          component: DetailStudent,
+          meta: {
+            requiresAuth: true 
+          }  
         },
         {
           path: 'funding',
           name: 'Funding',
-          component : Funding
+          component : Funding,
+          meta: {
+            requiresAuth: true 
+          }  
+        },
+        {
+          path: 'payment',
+          name: 'Payment',
+          component: Payment,
+          meta: { 
+            requiresAuth: true 
+          }  
+        },
+        {
+          path: 'news',
+          name: 'News',
+          component: News,
+          meta: { 
+            requiresAuth: true 
+          }  
+        },
+        {
+          path: 'members',
+          name: 'Members',
+          component: Member,
+          meta: { 
+            requiresAuth: true 
+          }  
+        },
+        {
+          path: 'user',
+          name: 'User',
+          component: User,
+          meta: { 
+            requiresAuth: true 
+          }  
         }
       ]
     },
@@ -68,5 +116,5 @@ export default new Router({
         }
       ]
     }
-  ]
+  ],
 })
